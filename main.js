@@ -2,10 +2,15 @@ var field = [];
 var tableField;
 
 function randomBombs(range, numberBombs) {
-    for (var i = 0; i < numberBombs; i++) {
-        bombaSorteada = Math.round(Math.random() * numberCels);
-
+    var bombaSorteada;
+    var listaBombas = [];
+    while (listaBombas.length < numberBombs) {
+        bombaSorteada = Math.ceil(Math.random() * range);
+        if (listaBombas.indexOf(bombaSorteada) < 0) {
+            listaBombas.push(bombaSorteada);
+        }
     }
+    return listaBombas.sort(function(a, b) { return a - b });
 }
 
 function makerField(columms, rows, bombs) {
