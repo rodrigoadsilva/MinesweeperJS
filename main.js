@@ -1,8 +1,12 @@
 var field = [];
 var tableField;
-var bombsNumber;
 
+function randomBombs(range, numberBombs) {
+    for (var i = 0; i < numberBombs; i++) {
+        bombaSorteada = Math.round(Math.random() * numberCels);
 
+    }
+}
 
 function makerField(columms, rows, bombs) {
     tableField = '<table style="width:30%">';
