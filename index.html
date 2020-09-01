@@ -1,16 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BT">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="styles.css">
-    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
     <title>MinesweeperJS</title>
 </head>
+
 <body>
-    <div id="minefield"></div>
-    
-    <script src="main.js"></script>
+    <div class="container h-100">
+        <div class="row h-100 d-flex justify-content-center align-items-center">
+            <div class="col-md-8 h-75 d-flex justify-content-center">
+                <div class="row bg-light border border-secondary">
+                    <div class="col-12">
+                        <h2 class="title text-center pt-4">Minesweeper JS</h2>
+                        <hr>
+                    </div>
+                    <div class="col-12 text-center" id="play-button-screen">
+                        <img class="img-fluid" src="assets/play_button.gif" onclick="chooseDifficulty()">
+                    </div>
+                    <div class="col-12" id="difficulty-screen" style="display: none;">
+                        <button class="btn btn-success btn-lg btn-block mb-4" onclick="difficultyEasy()">Iniciante</button>
+                        <button class="btn btn-warning btn-lg btn-block" onclick="difficultyIntermediate()">Intermediário</button>
+                        <button class=" btn btn-danger btn-lg btn-block mt-4">Expert</button>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center" id="game-screen" style="display: none;">
+                        <div id="minefield"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <audio id="explosion-audio">
+        <source src="assets/sounds/bomb_explosion.mp3">
+        Your see this is because your browser does not support the audio element.
+    </audio>
+    <audio id="difficulty-audio">
+        <source src="assets/sounds/menu_music.wav">
+        Your see this is because your browser does not support the audio element.
+    </audio>
+    <audio id="ingame-audio">
+        <source src="assets/sounds/in_game_music.wav">
+        Your see this is because your browser does not support the audio element.
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        var chooseDifficultyAudio = document.querySelector('#difficulty-audio');
+        chooseDifficultyAudio.loop = true;
+        chooseDifficultyAudio.load();
+
+        var inGameAudio = document.querySelector('#ingame-audio');
+        inGameAudio.loop = true;
+        inGameAudio.load();
+
+        var playButtonScreen = document.querySelector('#play-button-screen');
+        var difficultyScreen = document.querySelector('#difficulty-screen');
+        var gameScreen = document.querySelector('#game-screen');
+
+        var fieldComplete;
+
+        function chooseDifficulty() {
+            playButtonScreen.style.display = "none";
+            difficultyScreen.style.display = "block";
+            inGameAudio.pause();
+            chooseDifficultyAudio.play();
+        }
+
+        function difficultyEasy() {
+            difficultyScreen.style.display = "none";
+            gameScreen.style.display = "block";
+            chooseDifficultyAudio.pause();
+            inGameAudio.play();
+            fieldComplete = makerField(9, 9, 10);
+            fieldDisplay(fieldComplete);
+        }
+
+        function difficultyIntermediate() {
+            difficultyScreen.style.display = "none";
+            gameScreen.style.display = "block";
+            chooseDifficultyAudio.pause();
+            inGameAudio.play();
+            fieldComplete = makerField(16, 16, 40);
+            fieldDisplay(fieldComplete);
+        }
+    </script>
+
 </body>
+
 </html>

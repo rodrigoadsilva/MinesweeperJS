@@ -1,0 +1,19 @@
+@font-face {
+    font-family: MineSweeper;
+    src: url('../fonts/mine-sweeper.ttf');
+}
+
+html,
+body {
+    height: 100%;
+}
+
+table,
+th,
+td {
+    cursor: pointer;
+}
+
+.title {
+    font-family: MineSweeper;
+}
